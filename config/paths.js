@@ -1,12 +1,12 @@
 import { resolve } from 'path';
-import { isProduction } from './paths';
+import { isProduction } from './env';
 
 export const root = process.cwd();
 
 export const publicPath = '/';
 
 export const source = resolve(root, 'src');
-export const node_modules = resolve(root, 'node_modules');
+export const nodeModules = resolve(root, 'node_modules');
 export const destination = resolve(root, 'dist');
 export const distClient = resolve(destination, 'public');
 export const distServer = resolve(destination, 'server');

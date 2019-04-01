@@ -68,7 +68,7 @@ const base = {
       inject: true,
       title: i18n.name,
       description: i18n.description,
-      template: template,
+      template,
       filename: 'app.html',
       hash: false,
       cache: isProduction,

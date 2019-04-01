@@ -6,5 +6,5 @@ export const files = {
   scss: /\.scss$/i,
   extensions: ['.mjs', '.ts', '.tsx', '.js', '.jsx', '.json'],
   ignore: /\.(?:png|gif|jpg|jpeg|svg|ico|webp|json|js|txt)$/,
-  filter: /\.(map|gz|br|txt|license|html)$/i,
+  filter: /\.(map|gz|br|txt|license|html)$/i
 };

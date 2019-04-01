@@ -1,7 +1,6 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
-import { root, node_modules, source, mediaDirectory } from '../paths';
-import i18n from '../../i18n/en.json';
+import { root, nodeModules, source, mediaDirectory } from '../paths';
 
 export default {
   context: root,
@@ -18,10 +17,10 @@ export default {
   },
   resolve: {
     extensions: ['.mjs', '.js', '.jsx'],
-    modules: [node_modules],
+    modules: [nodeModules],
     alias: {
       '@': source,
-      'media': mediaDirectory,
+      media: mediaDirectory
     }
   },
   optimization: {
@@ -32,7 +31,7 @@ export default {
         terserOptions: {
           safari10: true,
           output: {
-            comments: false,
+            comments: false
           }
         },
         test: /\.js(\?.*)?$/i

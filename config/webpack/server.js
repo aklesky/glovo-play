@@ -1,10 +1,10 @@
 import merge from 'webpack-merge';
-import common from './common';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import nodeExternals from 'webpack-node-externals';
+import common from './common';
 
 import { isProduction } from '../env';
-import { distServer, node_modules, app } from '../paths';
+import { distServer, nodeModules, app } from '../paths';
 import { files } from '../files';
 import { bundle } from '../bundle';
 
@@ -59,12 +59,10 @@ const base = {
     ]
   },
   resolve: {
-    modules: [node_modules]
+    modules: [nodeModules]
   },
   target: 'node',
-  plugins: [
-    new CleanWebpackPlugin(),
-  ]
+  plugins: [new CleanWebpackPlugin()]
 };
 
 export default merge(common, base);
