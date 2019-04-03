@@ -1,6 +1,7 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import webpack from 'webpack';
-import { root, nodeModules, source, mediaDirectory } from '../paths';
+import { root, nodeModules, source, mediaDirectory, i18n } from '../paths';
+import { isProduction } from '../env';
 
 export default {
   context: root,
@@ -20,6 +21,7 @@ export default {
     modules: [nodeModules],
     alias: {
       '@': source,
+      i18n,
       media: mediaDirectory
     }
   },
@@ -30,6 +32,14 @@ export default {
         cache: true,
         terserOptions: {
           safari10: true,
+          mangle: true,
+          toplevel: true,
+          ecma: 6,
+          compress: {
+            unused: false,
+            drop_console: isProduction,
+            drop_debugger: isProduction
+          },
           output: {
             comments: false
           }
@@ -44,7 +54,7 @@ export default {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/](react|react-dom|styled-components|react-router|react-router-dom)[\\/]/,
-          name: 'vendor',
+          name: 'vendors',
           chunks: 'all',
           reuseExistingChunk: true,
           priority: 1
@@ -61,6 +71,9 @@ export default {
   plugins: [
     new webpack.ProgressPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    })
   ]
 };

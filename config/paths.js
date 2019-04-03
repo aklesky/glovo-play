@@ -1,27 +1,36 @@
-import { resolve } from 'path';
+import { join } from 'path';
 import { isProduction } from './env';
 
 export const root = process.cwd();
 
 export const publicPath = '/';
 
-export const source = resolve(root, 'src');
-export const nodeModules = resolve(root, 'node_modules');
-export const destination = resolve(root, 'dist');
-export const distClient = resolve(destination, 'public');
-export const distServer = resolve(destination, 'server');
+export const source = join(root, 'src');
+export const webpackConfig = join(root, 'webpack.config.babel.js');
 
-export const publicDirectory = resolve(root, 'public');
-export const staticDirectory = resolve(root, 'static');
-export const mediaDirectory = resolve(staticDirectory, 'img');
+export const nodeModules = join(root, 'node_modules');
+export const destination = join(root, 'dist');
+export const distClient = join(destination, 'public');
+export const distServer = join(destination, 'server');
 
-export const template = resolve(publicDirectory, 'index.html');
+export const publicDirectory = join(root, 'public');
+export const staticDirectory = join(root, 'static');
+export const mediaDirectory = join(staticDirectory, 'img');
+export const i18n = join(root, 'i18n');
 
-export const entries = resolve(source, 'entries');
+export const template = join(publicDirectory, isProduction ? 'prod.html': 'dev.html');
 
-export const publicEntry = resolve(entries, 'client.js');
-export const servercEntry = resolve(entries, 'server.js');
+export const entries = join(source, 'entries');
 
-export const server = resolve(root, 'server');
+export const publicEntry = join(entries, 'client.jsx');
+export const servercEntry = join(entries, 'server.jsx');
 
-export const app = isProduction ? resolve(server, 'production.js') : resolve(server, 'dev.js');
+export const server = join(root, 'server');
+export const data = join(server, 'data');
+
+export const app = join(server, 'server.js');
+export const appBundle = join(distClient, 'app.html');
+
+export const logsDirectory = join(root, 'logs')
+export const log = join(logsDirectory, 'info.log');
+export const error = join(logsDirectory, 'error.log');

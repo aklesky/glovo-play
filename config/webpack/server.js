@@ -13,7 +13,7 @@ const base = {
   mode: isProduction ? 'production' : 'development',
   devtool: !isProduction ? 'cheap-eval-source-map' : false,
   entry: {
-    server: app
+    app
   },
   externals: [nodeExternals()],
   output: {

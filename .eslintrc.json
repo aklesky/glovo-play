@@ -1,20 +1,30 @@
 {
   "extends": ["airbnb", "prettier", "prettier/react"],
-  "plugins": [
-    "import"
-  ],
+  "plugins": ["import"],
   "env": {
     "browser": true,
     "node": true,
     "es6": true,
-    "commonjs": true
+    "commonjs": true,
+    "mocha": true
   },
   "parser": "babel-eslint",
   "settings": {
-    "import/resolver": "webpack"
+    "import/resolver": {
+      "webpack": "./webpack.config.babel.js"
+    }
   },
+  "overrides": [
+    {
+      "files": "*.spec.js",
+      "rules": {
+        "no-unused-expressions": 0
+      }
+    }
+  ],
   "rules": {
     "import/no-extraneous-dependencies": 0,
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "no-underscore-dangle": 0
   }
 }

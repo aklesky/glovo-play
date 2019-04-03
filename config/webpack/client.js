@@ -18,8 +18,11 @@ const base = {
     pathinfo: true,
     publicPath,
     path: distClient,
-    filename: 'bundle.[hash].js',
+    filename: 'app.[hash].js',
     chunkFilename: '[name].[chunkHash].js'
+  },
+  entry: {
+    app: ['@babel/polyfill', publicEntry]
   },
   module: {
     rules: [
@@ -69,7 +72,7 @@ const base = {
       title: i18n.name,
       description: i18n.description,
       template,
-      filename: 'app.html',
+      filename: isProduction ? 'app.html' : 'index.html',
       hash: false,
       cache: isProduction,
       meta: {
@@ -99,9 +102,7 @@ const base = {
 const production = {
   mode: 'production',
   devtool: false,
-  entry: {
-    app: ['@babel/polyfill', publicEntry]
-  }
+  plugins: [new webpack.optimize.ModuleConcatenationPlugin()]
 };
 
 const development = {
@@ -111,19 +112,10 @@ const development = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['react-hot-loader/webpack']
+        exclude: /node_modules/
       }
     ]
-  },
-  entry: {
-    app: [
-      '@babel/polyfill',
-      'webpack-hot-middleware/client?name=client&noInfo=false&timeout=2000',
-      publicEntry
-    ]
-  },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  }
 };
 
 export default merge(common, base, isProduction ? production : development);
