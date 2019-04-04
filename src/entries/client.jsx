@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from './universal';
+import { BrowserRouter } from 'react-router-dom';
+import Universal from './universal';
 import { theme } from '@/theme';
 import { client } from '@/utils/apollo';
 
-
-
 const renderApp = apollo => {
+  const Root = (
+    <BrowserRouter>
+      <Universal client={apollo} theme={theme} />
+    </BrowserRouter>
+  );
+
   if (process.env.NODE_ENV === 'production') {
-    ReactDOM.hydrate(<Root client={apollo} theme={theme} />, document.getElementById('root'));
+    ReactDOM.hydrate(<Root />, document.getElementById('root'));
   } else {
-    ReactDOM.render(<Root client={apollo} theme={theme} />, document.getElementById('root'));
+    ReactDOM.render(<Root />, document.getElementById('root'));
   }
 };
 

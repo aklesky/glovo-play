@@ -3,15 +3,18 @@ import fs from 'fs';
 import { getDataFromTree } from 'react-apollo';
 import { ServerStyleSheet } from 'styled-components';
 import { renderToNodeStream } from 'react-dom/server';
-import { client } from '@/utils/apollo';
 import co from 'co';
 import { Readable } from 'stream';
+import { client } from '../../src/utils/apollo';
 import { logger } from "./logger";
 import { appBundle } from '../../config';
 
 class View extends Readable {
+  context = null;
+
   constructor(context) {
     super();
+    this.context = context;
     co.call(this, this.render).catch(context.onerror);
   }
 
@@ -23,11 +26,12 @@ class View extends Readable {
     const [head, footer] = data.split('<!-- AppRoot -->');
     this.push(head);
 
+    logger.info(this.context.url);
     const sheet = new ServerStyleSheet();
     const { staticApp } = require('@/entries/server');
 
     const apollo = client(process.browser);
-    const app = staticApp(apollo);
+    const app = staticApp(apollo, this.context.url);
 
     const jsx = sheet.collectStyles(app);
 
