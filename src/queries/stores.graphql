@@ -1,0 +1,12 @@
+query getStores($category: String) {
+  Stores(category: $category) {
+		id
+    name
+    description
+    tags
+    schedule {
+      open
+      close
+    }
+  }
+}

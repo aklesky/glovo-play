@@ -3,41 +3,17 @@
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-syntax-import-meta",
     "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-transform-runtime"
+    "@babel/plugin-transform-runtime",
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true,
+        "displayName": true,
+        "preprocess": false,
+        "minimize": false
+      }
+    ]
   ],
-  "env": {
-    "development": {
-      "plugins": [
-        [
-          "babel-plugin-styled-components",
-          {
-            "ssr": true,
-            "displayName": true,
-            "pure": true
-          }
-        ]
-      ]
-    },
-    "production": {
-      "plugins": [
-        [
-          "babel-plugin-styled-components",
-          {
-            "ssr": true,
-            "displayName": false,
-            "pure": true
-          }
-        ],
-        [
-          "transform-react-remove-prop-types",
-          {
-            "removeImport": true,
-            "ignoreFilenames": ["node_modules"]
-          }
-        ]
-      ]
-    },
-  },
   "presets": [
     "@babel/preset-env",
     "@babel/preset-react"

@@ -13,7 +13,12 @@ export default {
         use: {
           loader: 'babel-loader'
         }
-      }
+      },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
     ]
   },
   resolve: {
@@ -37,8 +42,8 @@ export default {
           ecma: 6,
           compress: {
             unused: false,
-            drop_console: isProduction,
-            drop_debugger: isProduction
+            drop_console: !isProduction,
+            drop_debugger: !isProduction
           },
           output: {
             comments: false

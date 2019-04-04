@@ -1,15 +1,11 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
-import { theme } from './theme';
-import GlobalStyles from './theme/globalStyles';
+import Categories from '@/containers/categories';
 
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <>
-    <GlobalStyles />
-    <div>initial setup</div>
-    </>
-  </ThemeProvider>
+  <div>
+    initial setup
+    <Categories />
+  </div>
 );
 App.displayName = 'App';
 

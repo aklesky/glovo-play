@@ -9,7 +9,7 @@ const schema = makeExecutableSchema({
 });
 
 export const useApollo = app => {
-  const server = new ApolloServer({ schema, playground: !isProduction, introspection: !isProduction });
+  const server = new ApolloServer({ schema, playground: isProduction, introspection: isProduction });
 
   server.applyMiddleware({ app });
   return server;

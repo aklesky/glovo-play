@@ -1,20 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '@/app';
-import i18n from 'i18n/en.json';
+import Root from './universal';
+import { theme } from '@/theme';
+import { client } from '@/utils/apollo';
 
-const renderApp = () => {
+
+
+const renderApp = apollo => {
   if (process.env.NODE_ENV === 'production') {
-    ReactDOM.hydrate(<App i18n={i18n} />, document.getElementById('root'));
+    ReactDOM.hydrate(<Root client={apollo} theme={theme} />, document.getElementById('root'));
   } else {
-    ReactDOM.render(<App i18n={i18n} />, document.getElementById('root'));
+    ReactDOM.render(<Root client={apollo} theme={theme} />, document.getElementById('root'));
   }
 };
 
-renderApp();
+renderApp(client(process.browser));
 
 if (module.hot) {
   module.hot.accept('@/app', () => {
-    renderApp();
+    renderApp(client(process.browser));
   });
 }

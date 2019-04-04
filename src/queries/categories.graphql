@@ -1,0 +1,9 @@
+{
+  Categories {
+    id
+    label
+    name
+    openIcon
+    sleepIcon
+  }
+}
