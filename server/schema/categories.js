@@ -6,6 +6,7 @@ export const categories = gql`
     label: String
     name: String
     openIcon: String
-    sleepIcon: String
+    sleepIcon: String,
+    active: Boolean
   }
 `;

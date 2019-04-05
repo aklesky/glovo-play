@@ -27,6 +27,7 @@ describe('Initial Apollo Server Suite', () => {
           Categories {
             id
             label
+            active
           }
         }
       `
@@ -36,9 +37,10 @@ describe('Initial Apollo Server Suite', () => {
       .and.to.be.an('object')
       .that.has.property('Categories')
       .that.length.greaterThan(0)
-      .and.all.have.property('id');
+      .and.all.have.property('id')
+      .and.all.have.property('active');
   });
-  it('Apollo Query: Stores Should fetch data for gifts and contains properties id and name', async () => {
+  it('Apollo Query: Stores Should fetch data for gifts and contains properties id, name and active', async () => {
     const { query } = createTestClient(instance);
     const response = await query({
       query: gql`
@@ -59,6 +61,7 @@ describe('Initial Apollo Server Suite', () => {
       .that.has.property('Stores')
       .that.length.greaterThan(0)
       .and.all.have.property('id')
-      .and.all.have.property('name');
+      .and.all.have.property('name')
+      .and.all.have.property('active');
   });
 });

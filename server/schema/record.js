@@ -15,6 +15,7 @@ export const record = gql`
     description: String
     tags: [String]
     schedule: [Schedule]
+    active: Boolean
   }
 `;
 
