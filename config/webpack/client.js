@@ -18,8 +18,8 @@ const base = {
     pathinfo: true,
     publicPath,
     path: distClient,
-    filename: 'app.[hash].js',
-    chunkFilename: '[name].[chunkHash].js'
+    filename: 'assets/js/app.[hash].js',
+    chunkFilename: 'assets/js/[name].[chunkHash].js'
   },
   entry: {
     app: ['@babel/polyfill', publicEntry]

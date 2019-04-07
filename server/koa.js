@@ -1,9 +1,10 @@
 import Koa from 'koa';
 import serve from 'koa-static';
+import mount from 'koa-mount';
 import cors from '@koa/cors';
 import compress from 'koa-compress';
 import { useServerSideRendering } from './middlewares/ssr';
-import { distClient, port } from '../config';
+import { distClient, distAssets, port } from '../config';
 import { useApollo } from './middlewares/apollo';
 
 
@@ -17,7 +18,9 @@ export const setupServer = () => {
   const apollo = useApollo(app);
 
   app
+    .use(mount('/assets/js', serve(distAssets, { defer: true})))
     .use(serve(distClient, { defer: true}))
+
     .use(cors());
 
 
@@ -43,6 +46,7 @@ export const appWithServerSideRendering = () => {
   const { app } = setupServer();
 
   router.get('/', useServerSideRendering);
+  router.get('/:id', useServerSideRendering);
 
   app.use(router.routes());
   app.use(compress());

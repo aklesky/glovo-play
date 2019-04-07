@@ -8,14 +8,14 @@ import { client } from '@/utils/apollo';
 const renderApp = apollo => {
   const Root = (
     <BrowserRouter>
-      <Universal client={apollo} theme={theme} />
+      <Universal client={apollo} theme={theme}/>
     </BrowserRouter>
   );
 
   if (process.env.NODE_ENV === 'production') {
-    ReactDOM.hydrate(<Root />, document.getElementById('root'));
+    ReactDOM.hydrate(Root, document.getElementById('root'));
   } else {
-    ReactDOM.render(<Root />, document.getElementById('root'));
+    ReactDOM.render(Root, document.getElementById('root'));
   }
 };
 

@@ -11,6 +11,7 @@ export const webpackConfig = join(root, 'webpack.config.babel.js');
 export const nodeModules = join(root, 'node_modules');
 export const destination = join(root, 'dist');
 export const distClient = join(destination, 'public');
+export const distAssets = join(distClient, 'assets', 'js');
 export const distServer = join(destination, 'server');
 
 export const publicDirectory = join(root, 'public');

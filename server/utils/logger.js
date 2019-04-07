@@ -28,7 +28,7 @@ export const logger = createLogger({
   ]
 });
 
-if (isProduction) {
+if (!isProduction) {
   logger.add(
     new transports.Console({
       format: format.combine(

@@ -6,7 +6,7 @@ import { categories } from './categories';
 const queries = gql`
   type AppQuery {
     Categories: [Categories]
-    Stores(category: String): [Record]
+    Stores(category: String!, tag: String): [Record]
   }
 `;
 

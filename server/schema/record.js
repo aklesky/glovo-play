@@ -1,4 +1,4 @@
-import { gql } from "apollo-server";
+import { gql } from 'apollo-server';
 
 export const schedule = gql`
   type Schedule {
@@ -6,7 +6,7 @@ export const schedule = gql`
     open: String
     close: String
   }
-`
+`;
 
 export const record = gql`
   type Record {
@@ -15,7 +15,8 @@ export const record = gql`
     description: String
     tags: [String]
     schedule: [Schedule]
-    active: Boolean
+    is_closed: Boolean
+    open: String
   }
 `;
 

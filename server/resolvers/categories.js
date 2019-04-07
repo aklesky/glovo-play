@@ -1,6 +1,6 @@
 import { logger } from '../utils/logger';
 import { getJsonData } from '../utils/data';
-import { isClosed, parseTime } from '../utils/date';
+import { isStoreClosed } from '../utils/schedule';
 
 export const Categories = {
   AppQuery: {
@@ -15,11 +15,10 @@ export const Categories = {
 
           return {
             ...item,
+
             active: stores.reduce((_, current) => {
-              return current.schedule.reduce((__, schedule) => {
-                return !isClosed(parseTime(schedule.close));
-              }, true);
-            }, true),
+              return !isStoreClosed(current, new Date());
+            }, true)
           };
         });
       } catch (e) {

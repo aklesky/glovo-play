@@ -1,9 +1,11 @@
-query getStores($category: String) {
-  Stores(category: $category) {
+query getStores($category: String!, $tag: String) {
+  Stores(category: $category, tag: $tag) {
 		id
     name
     description
     tags
+    is_closed
+    open
     schedule {
       open
       close
