@@ -28,7 +28,7 @@ export const findNextOpeningDay = (schedule, currentDate) => {
   const openTime = parseTime(next.open).setDate(currentDate.getDate() + distance);
 
   const dateInfo = formatDate(openTime);
-  return _.format(i18n.nextOpenDay)(dateInfo.weekday, dateInfo.hour, dateInfo.minute);
+  return _.format(i18n.nextOpenDay)(dateInfo.weekday, dateInfo.hours, dateInfo.minutes);
 };
 
 export const nextOpenHours = (store, currentDate) => {
@@ -45,8 +45,8 @@ export const nextOpenHours = (store, currentDate) => {
     const storeIsOpen = !isClosed(current.open, currentDate);
 
     if (storeIsOpen) {
-      const openTime = parseTime(current.open);
-      return _.format(i18n.willOpenToday)(openTime.getHours(), openTime.getMinutes());
+      const openTime = formatDate(parseTime(current.open));
+      return _.format(i18n.willOpenToday)(openTime.hours, openTime.minutes);
     }
 
     const storeIsClosed = isClosed(current.close, currentDate);

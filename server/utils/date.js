@@ -35,17 +35,15 @@ export const isClosed = (time, current) => {
 export const findDistance = (expected, fromToday) => (expected + 6 - fromToday) % 6;
 
 export const formatDate = date => {
-  const format = new Intl.DateTimeFormat('en-GB', {
+  const format = new Intl.DateTimeFormat('en-DE', {
     weekday: 'long',
-    hour: 'numeric',
-    minute: 'numeric'
+    hour: '2-digit',
+    minute: '2-digit'
   }).formatToParts(date);
-
   return format.reduce((initial, part) => {
     const formatted = {
       ...initial
     };
-
     if (part.type === dateObjectTypes.weekday) {
       formatted.weekday = part.value;
     }

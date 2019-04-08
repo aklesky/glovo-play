@@ -20,6 +20,8 @@ export const Categories = {
               return !isStoreClosed(current, new Date());
             }, true)
           };
+        }).sort((a, b) => {
+          return a.active < b.active;
         });
       } catch (e) {
         logger.error(e.message);

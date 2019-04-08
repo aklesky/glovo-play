@@ -49,6 +49,7 @@
     "react-apollo": "2.5.3",
     "react-dom": "16.8.6",
     "react-router-dom": "5.0.0",
+    "rxjs": "^6.4.0",
     "styled-components": "4.2.0",
     "webfontloader": "1.6.28"
   },

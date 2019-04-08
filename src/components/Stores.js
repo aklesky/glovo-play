@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { elevation } from '@/theme/elevation';
 
 export const Stores = styled.section`
-  background: ${props => props.theme.colors.pink};
+  text-align: center;
+  background: ${props => props.theme.colors.background};
   height: 100%;
-  ${elevation}
 `;

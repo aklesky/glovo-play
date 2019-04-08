@@ -3,14 +3,14 @@ import serve from 'koa-static';
 import mount from 'koa-mount';
 import cors from '@koa/cors';
 import compress from 'koa-compress';
+import fs from 'fs';
+import path from 'path';
 import { useServerSideRendering } from './middlewares/ssr';
 import { distClient, distAssets, port } from '../config';
 import { useApollo } from './middlewares/apollo';
 
-
 import { router } from './router';
 import { logger } from './utils/logger';
-
 
 export const setupServer = () => {
   const app = new Koa();
@@ -18,21 +18,25 @@ export const setupServer = () => {
   const apollo = useApollo(app);
 
   app
-    .use(mount('/assets/js', serve(distAssets, { defer: true})))
-    .use(serve(distClient, { defer: true}))
-
+    .use(mount('/assets/js', serve(distAssets, { defer: true })))
+    .use(serve(distClient, { defer: true }))
     .use(cors());
-
 
   return {
     app,
-    apollo,
+    apollo
   };
-}
+};
 
-export const appWithWebpackMiddleware = async (middleware) => {
+export const appWithWebpackMiddleware = async middleware => {
   const { app } = setupServer();
   app.use(await middleware);
+  router.get('*', async ctx => {
+    const html = fs.readFileSync(path.resolve(distClient, 'index.html'));
+    ctx.type = 'html';
+    ctx.body = html;
+  });
+
   app.use(router.routes());
 
   app.listen(port, () => {
@@ -40,7 +44,7 @@ export const appWithWebpackMiddleware = async (middleware) => {
   });
 
   return app;
-}
+};
 
 export const appWithServerSideRendering = () => {
   const { app } = setupServer();
@@ -55,6 +59,4 @@ export const appWithServerSideRendering = () => {
     logger.info(`listening to port ${port}`);
   });
   return app;
-}
-
-
+};

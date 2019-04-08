@@ -13,6 +13,7 @@ export const theme = {
     }
   },
   metrics: {
-    padding: '5px'
+    padding: '5px',
+    margin: '10px',
   }
 }

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
 body {
@@ -18,4 +18,9 @@ html, body, #root, main {
   display: flex;
   flex-direction: column;
 }
-`
+
+*:focus {
+  outline: none;
+}
+
+`;

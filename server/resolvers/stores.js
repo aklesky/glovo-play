@@ -10,7 +10,7 @@ export const Stores = {
         const { stores } = response;
 
         const filter = tag ? tag.trim() : null;
-
+        logger.info(stores);
         return orderBySchedule(
           filter && filter.length >= 2 ? stores.filter(item => item.tags.includes(filter)) : stores
         );
