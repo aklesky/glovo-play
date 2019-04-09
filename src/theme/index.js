@@ -15,5 +15,11 @@ export const theme = {
   metrics: {
     padding: 5,
     margin: 10,
+    marginVertical: 15,
+    paddingVertical: 10,
+    store: {
+      minHeight: 200,
+      maxHeight: 300,
+    }
   }
 }

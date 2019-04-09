@@ -1,7 +1,4 @@
-import { Categories } from "./categories";
-import { Stores } from "./stores";
+import { Categories } from './categories';
+import { Stores } from './category';
 
-export const Resolvers = [
-  Categories,
-  Stores,
-];
+export const Resolvers = [Categories, Stores];

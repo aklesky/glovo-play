@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server';
+import { categories } from './categories';
 
 export const schedule = gql`
   type Schedule {
@@ -8,8 +9,8 @@ export const schedule = gql`
   }
 `;
 
-export const record = gql`
-  type Record {
+export const store = gql`
+  type Store {
     id: ID!
     name: String
     description: String
@@ -20,4 +21,11 @@ export const record = gql`
   }
 `;
 
-export default () => [record, schedule];
+export const category = gql`
+  type Category {
+    current: Categories
+    stores: [Store]
+  }
+`;
+
+export default () => [store, schedule, categories, category];

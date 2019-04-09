@@ -6,5 +6,6 @@
   "isOpenNow": "Open Now",
   "willOpenToday": "Will open today at %s:%s",
   "nextOpenDay": "Next Opening hours on %s at %s:%s",
-  "filterByTag": "Filter By Tag"
+  "filterByTag": "Filter By Tag",
+  "category": "Category"
 }

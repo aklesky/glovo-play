@@ -19,7 +19,6 @@ const Root = props => {
         <meta charSet="utf-8" />
         <title>{name}</title>
         <meta name="description" content={description} />
-        <link rel="canonical" href="/" />
       </Helmet>
       <ThemeProvider theme={theme}>
         <main className="test">
