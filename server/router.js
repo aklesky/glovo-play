@@ -1,9 +1,21 @@
 import KoaRouter from 'koa-router';
+import path from 'path';
+import fs from 'fs';
 import { logger } from './utils/logger';
 import { getJsonData } from './utils/data';
+import { distClient, distAssets } from '../config';
 
 export const router = new KoaRouter();
 const supportedCategories = ['restaurants', 'snacks', 'wonders', 'gifts'];
+
+router.get('/sw.js', async ctx => {
+  ctx.type = 'text/javascript';
+  ctx.body = fs.readFileSync(path.resolve(distAssets, 'sw.js'));
+});
+router.get('/robots.txt', async ctx => {
+  ctx.type = 'text';
+  ctx.body = fs.readFileSync(path.resolve(distClient, 'robots.txt'));
+});
 
 router.get('/categories', ctx => {
   try {

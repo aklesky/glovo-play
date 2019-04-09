@@ -4,11 +4,16 @@ import { BrowserRouter } from 'react-router-dom';
 import Universal from './universal';
 import { theme } from '@/theme';
 import { client } from '@/utils/apollo';
+import sw from '@/sw';
+import fonts from '@/fonts';
+
+sw();
+fonts();
 
 const renderApp = apollo => {
   const Root = (
     <BrowserRouter>
-      <Universal client={apollo} theme={theme}/>
+      <Universal client={apollo} theme={theme} />
     </BrowserRouter>
   );
 

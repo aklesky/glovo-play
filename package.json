@@ -69,10 +69,12 @@
     "babel-plugin-macros": "2.5.1",
     "babel-plugin-styled-components": "1.10.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "brotli-webpack-plugin": "1.1.0",
     "chai": "4.2.0",
     "chai-things": "0.2.0",
     "clean-webpack-plugin": "2.0.1",
     "co": "4.6.0",
+    "compression-webpack-plugin": "2.0.0",
     "copy-webpack-plugin": "5.0.2",
     "enzyme": "3.9.0",
     "eslint": "5.16.0",
@@ -97,8 +99,9 @@
     "webpack-manifest-plugin": "2.0.4",
     "webpack-merge": "4.2.1",
     "webpack-node-externals": "1.7.2",
+    "webpack-pwa-manifest": "4.0.0",
     "webpack-vendor-chunk-plugin": "1.0.0",
     "winston": "3.2.1",
-    "workbox-webpack-plugin": "4.1.1"
+    "workbox-webpack-plugin": "4.2.0"
   }
 }

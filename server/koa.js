@@ -18,8 +18,8 @@ export const setupServer = () => {
   const apollo = useApollo(app);
 
   app
-    .use(mount('/assets/js', serve(distAssets, { defer: true })))
-    .use(serve(distClient, { defer: true }))
+    .use(mount('/assets/js', serve(distAssets, { defer: true, br: true, gzip: true })))
+    .use(serve(distClient, { defer: true, br: true, gzip: true }))
     .use(cors());
 
   return {
