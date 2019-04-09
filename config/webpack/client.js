@@ -17,7 +17,6 @@ import {
   workBoxConfig,
   swCore
 } from '../paths';
-import i18n from '../../i18n/en.json';
 import { colors } from '../../src/theme/colors';
 import { files } from '../files';
 import { bundle } from '../bundle';
@@ -81,8 +80,6 @@ const base = {
   plugins: [
     new HtmlWebPackPlugin({
       inject: true,
-      title: i18n.name,
-      description: i18n.description,
       template,
       filename: isProduction ? 'app.html' : 'index.html',
       hash: false,

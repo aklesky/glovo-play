@@ -5,7 +5,7 @@ export const Row = styled.div`
   ${flexbox}
   flex-flow: row wrap;
   flex: 0 1 auto;
-  height: ${props => props.fullHeight ? '100%': 'auto'};
+  height: ${props => (props.fullHeight ? '100%' : 'auto')};
   width: 100%;
 `;
 

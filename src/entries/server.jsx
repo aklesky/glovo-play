@@ -5,6 +5,6 @@ import Universal from './universal';
 
 export const staticApp = (client, path) => (
   <StaticRouter location={path}>
-    <Universal theme={theme} client={client}/>
+    <Universal theme={theme} client={client} />
   </StaticRouter>
 );

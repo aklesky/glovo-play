@@ -3,7 +3,7 @@ import { elevation } from '@/theme/elevation';
 
 export const Header = styled.header`
   background: ${props => props.theme.colors.secondary};
-  padding: ${props => props.theme.metrics.padding};
-  margin: ${props => props.theme.metrics.padding};
+  padding: ${props => props.theme.metrics.padding}px;
+  margin: ${props => props.theme.metrics.padding}px;
   ${elevation}
 `;
