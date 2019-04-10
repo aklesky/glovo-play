@@ -34,7 +34,7 @@ const base = {
                   name: '[name].[hash:8].[ext]',
                   outputPath: bundle.media.destination,
                   publicPath: bundle.media.publicPath,
-                  emitFiles: false
+                  emitFile: false
                 }
               }
             ]

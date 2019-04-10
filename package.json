@@ -5,7 +5,7 @@
   "main": "dist/server/app.js",
   "scripts": {
     "postinstall": "npm run build",
-    "test": "mocha --watch server/**/*.spec.js src/**/*.spec.js",
+    "test": "mocha --inspect --watch server/**/*.spec.js src/**/*.spec.js",
     "start": "node dist/server/app.js",
     "dev": "nodemon server/dev.js",
     "build": "webpack",
@@ -24,6 +24,9 @@
   "homepage": "https://github.com/Glovo/frontend-assignment#readme",
   "dependencies": {
     "@babel/runtime": "7.4.2",
+    "@fortawesome/fontawesome-svg-core": "1.2.17",
+    "@fortawesome/free-solid-svg-icons": "5.8.1",
+    "@fortawesome/react-fontawesome": "0.1.4",
     "@koa/cors": "3.0.0",
     "apollo-cache-inmemory": "1.5.1",
     "apollo-client": "2.5.1",
@@ -41,13 +44,16 @@
     "jsonfile": "5.0.0",
     "koa": "2.5.2",
     "koa-compress": "3.0.0",
+    "koa-mount": "^4.0.0",
     "koa-router": "7.4.0",
     "koa-static": "5.0.0",
     "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-apollo": "2.5.3",
     "react-dom": "16.8.6",
+    "react-helmet-async": "1.0.2",
     "react-router-dom": "5.0.0",
+    "rxjs": "^6.4.0",
     "styled-components": "4.2.0",
     "webfontloader": "1.6.28"
   },
@@ -67,10 +73,13 @@
     "babel-plugin-macros": "2.5.1",
     "babel-plugin-styled-components": "1.10.0",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
+    "brotli-webpack-plugin": "1.1.0",
     "chai": "4.2.0",
+    "chai-sorted": "0.2.0",
     "chai-things": "0.2.0",
     "clean-webpack-plugin": "2.0.1",
     "co": "4.6.0",
+    "compression-webpack-plugin": "2.0.0",
     "copy-webpack-plugin": "5.0.2",
     "enzyme": "3.9.0",
     "eslint": "5.16.0",
@@ -95,8 +104,9 @@
     "webpack-manifest-plugin": "2.0.4",
     "webpack-merge": "4.2.1",
     "webpack-node-externals": "1.7.2",
+    "webpack-pwa-manifest": "4.0.0",
     "webpack-vendor-chunk-plugin": "1.0.0",
     "winston": "3.2.1",
-    "workbox-webpack-plugin": "4.1.1"
+    "workbox-webpack-plugin": "4.2.0"
   }
 }

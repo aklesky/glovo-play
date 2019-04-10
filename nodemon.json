@@ -8,6 +8,6 @@
   "verbose": true,
   "ext": "js json",
   "execMap": {
-    "js": "node --inspect -r @babel/register"
+    "js": "node -r @babel/register"
   }
 }

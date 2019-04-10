@@ -2,5 +2,12 @@
   "name": "Glovo: Assigmnent Test",
   "description": "An amazing assigment for Glovo",
   "short_name": "For Glovo",
-  "banner": "Aleksei Semiglasov <aleksey.semiglasov@gmail.com>"
+  "banner": "Aleksei Semiglasov <aleksey.semiglasov@gmail.com>",
+  "isOpenNow": "Open Now",
+  "willOpenToday": "Will open today at %s:%s",
+  "nextOpenDay": "Next Opening hours on %s at %s:%s",
+  "filterByTag": "Filter By Tag",
+  "isClosed": "Store is closed.",
+  "category": "Category",
+  "back": "Back"
 }

@@ -5,11 +5,10 @@ import { logger } from './logger';
 export const withStyledComponents = App => {
   const sheet = new ServerStyleSheet();
   try {
-
     const stream = sheet.interleaveWithNodeStream(renderToNodeStream(App));
     sheet.getStyleTags();
     return {
-      stream,
+      stream
     };
   } catch (e) {
     logger.error(e.message);

@@ -1,4 +1,4 @@
-import View from '../utils/react';
+import { View } from '../utils/react';
 
 export const useServerSideRendering = async ctx => {
   ctx.type = 'html';

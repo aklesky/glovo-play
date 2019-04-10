@@ -1,15 +1,26 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
+import BrotliCompression from 'brotli-webpack-plugin';
 import ScriptExtHtmlWebpackPlugin from 'script-ext-html-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import common from './common';
 import { isProduction } from '../env';
-import { distClient, publicPath, template, publicEntry } from '../paths';
-import i18n from '../../i18n/en.json';
+import {
+  distClient,
+  publicPath,
+  template,
+  publicEntry,
+  robots,
+  workBoxConfig,
+  swCore
+} from '../paths';
 import { colors } from '../../src/theme/colors';
 import { files } from '../files';
 import { bundle } from '../bundle';
+import { progressive } from './progressive';
 
 const base = {
   name: 'client',
@@ -18,8 +29,8 @@ const base = {
     pathinfo: true,
     publicPath,
     path: distClient,
-    filename: 'app.[hash].js',
-    chunkFilename: '[name].[chunkHash].js'
+    filename: 'assets/js/app.[hash].js',
+    chunkFilename: 'assets/js/[name].[chunkHash].js'
   },
   entry: {
     app: ['@babel/polyfill', publicEntry]
@@ -69,8 +80,6 @@ const base = {
   plugins: [
     new HtmlWebPackPlugin({
       inject: true,
-      title: i18n.name,
-      description: i18n.description,
       template,
       filename: isProduction ? 'app.html' : 'index.html',
       hash: false,
@@ -95,14 +104,40 @@ const base = {
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'async'
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin([
+      {
+        from: robots,
+        to: distClient,
+        cache: isProduction
+      },
+      {
+        from: workBoxConfig,
+        to: swCore
+      }
+    ])
   ]
 };
 
 const production = {
   mode: 'production',
   devtool: false,
-  plugins: [new webpack.optimize.ModuleConcatenationPlugin()]
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new CompressionPlugin({
+      cache: true,
+      minRatio: 0.99,
+      threshold: 10240,
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/
+    }),
+    new BrotliCompression({
+      asset: '[path].br[query]',
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })
+  ]
 };
 
 const development = {
@@ -118,4 +153,4 @@ const development = {
   }
 };
 
-export default merge(common, base, isProduction ? production : development);
+export default merge(common, base, progressive, isProduction ? production : development);

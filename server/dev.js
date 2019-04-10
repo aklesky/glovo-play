@@ -8,10 +8,13 @@ const compiler = webpack(client);
 const middleware = koaWebpack({
   compiler,
   config: {
-    watch: true
+    watch: false,
   },
   devMiddleware: {
-    writeToDisk: false
+    writeToDisk: true
+  },
+  hotClient: {
+    reload: true,
   }
 });
 

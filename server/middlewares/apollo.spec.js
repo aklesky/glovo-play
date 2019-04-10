@@ -27,6 +27,7 @@ describe('Initial Apollo Server Suite', () => {
           Categories {
             id
             label
+            active
           }
         }
       `
@@ -36,16 +37,20 @@ describe('Initial Apollo Server Suite', () => {
       .and.to.be.an('object')
       .that.has.property('Categories')
       .that.length.greaterThan(0)
-      .and.all.have.property('id');
+      .and.all.have.property('id')
+      .and.all.have.property('active');
   });
-  it('Apollo Query: Stores Should fetch data for gifts and contains properties id and name', async () => {
+  it('Apollo Query: Category Should fetch data for gifts and contains properties id, name and is_closed', async () => {
     const { query } = createTestClient(instance);
     const response = await query({
       query: gql`
-        query getStores($category: String) {
-          Stores(category: $category) {
-            id
-            name
+        query getStores($category: String!) {
+          Category(category: $category) {
+            stores {
+              id
+              name
+              is_closed
+            }
           }
         }
       `,
@@ -56,9 +61,46 @@ describe('Initial Apollo Server Suite', () => {
     response.should.have
       .property('data')
       .and.to.be.an('object')
-      .that.has.property('Stores')
+      .that.has.property('Category')
+      .that.has.property('stores')
       .that.length.greaterThan(0)
       .and.all.have.property('id')
-      .and.all.have.property('name');
+      .and.all.have.property('name')
+      .and.all.have.property('is_closed');
+  });
+  it('Apollo Query: Category Should have one store for restaurants and by tag vegan', async () => {
+    const { query } = createTestClient(instance);
+    const response = await query({
+      query: gql`
+        query getStores($category: String!, $tag: String) {
+          Category(category: $category, tag: $tag) {
+            current {
+              name
+              label
+              active
+            }
+            stores {
+              id
+              name
+              is_closed
+              open
+            }
+          }
+        }
+      `,
+      variables: {
+        category: 'restaurants',
+        tag: 'vegan'
+      }
+    });
+    response.should.have
+      .property('data')
+      .and.to.be.an('object')
+      .that.has.property('Category')
+      .that.has.property('stores')
+      .that.length(1)
+      .and.all.have.property('id')
+      .and.all.have.property('name')
+      .and.all.have.property('is_closed');
   });
 });
