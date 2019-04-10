@@ -6,15 +6,15 @@ const dateObjectTypes = {
   minutes: 'minute'
 };
 
-export const parseTime = time => {
+export const parseTime = (time, currentDate) => {
   try {
     if (!time) {
       return false;
     }
-    const current = new Date();
+    const current = currentDate || new Date();
     const [hours, minutes] = time.split(':');
-    current.setHours(hours);
-    current.setMinutes(minutes);
+    current.setHours(parseInt(hours, 0));
+    current.setMinutes(parseInt(minutes, 0));
     return current;
   } catch (e) {
     logger.error(e.message);

@@ -74,7 +74,7 @@ describe('Initial Apollo Server Suite', () => {
       query: gql`
         query getStores($category: String!, $tag: String) {
           Category(category: $category, tag: $tag) {
-            category {
+            current {
               name
               label
               active
