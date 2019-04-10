@@ -24,6 +24,9 @@
   "homepage": "https://github.com/Glovo/frontend-assignment#readme",
   "dependencies": {
     "@babel/runtime": "7.4.2",
+    "@fortawesome/fontawesome-svg-core": "1.2.17",
+    "@fortawesome/free-solid-svg-icons": "5.8.1",
+    "@fortawesome/react-fontawesome": "0.1.4",
     "@koa/cors": "3.0.0",
     "apollo-cache-inmemory": "1.5.1",
     "apollo-client": "2.5.1",
@@ -72,6 +75,7 @@
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "brotli-webpack-plugin": "1.1.0",
     "chai": "4.2.0",
+    "chai-sorted": "0.2.0",
     "chai-things": "0.2.0",
     "clean-webpack-plugin": "2.0.1",
     "co": "4.6.0",

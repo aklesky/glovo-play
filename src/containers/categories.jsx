@@ -4,8 +4,7 @@ import query from '@/queries/categories.graphql';
 import { LinkTo } from '@/components/Link';
 import Category from '@/containers/category';
 import { Grid, Row, Column } from '@/components/Grid';
-import { media } from '@/theme/images';
-import { Image } from '@/components/Image';
+import { Subtitle } from '@/components/Subtitle';
 
 const Categories = () => (
   <Grid fullHeight>
@@ -18,11 +17,17 @@ const Categories = () => (
           return data.Categories.map(item => {
             return (
               <Column key={item.id} lg={3} md={4} sm={12} xs={12}>
-                <Category data={item}>
-                  <LinkTo active={item.active ? 1 : 0} to={`/${item.name}`}>
-                    {item.label}
+                <>
+                  <LinkTo
+                    aria-label={item.label}
+                    active={item.active && item.active ? 1 : 0}
+                    to={`/${item.name}`}
+                  >
+                    <Category data={item}>
+                      <Subtitle>{item.label}</Subtitle>
+                    </Category>
                   </LinkTo>
-                </Category>
+                </>
               </Column>
             );
           });

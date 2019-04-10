@@ -1,5 +1,5 @@
 import { should } from 'chai';
-import { parseTime, isClosed, findDistance, formatDate } from './date';
+import { parseTime, isOpen, findDistance, formatDate } from './date';
 import { sundayStore, wednesdayStore, fridayStore } from '../../mock/store';
 
 should();
@@ -37,15 +37,15 @@ describe('Date utils suite', () => {
     diff.should.be.true;
   });
 
-  it('isClosed should be a function', () => {
-    isClosed.should.be.a('function');
+  it('isOpen should be a function', () => {
+    isOpen.should.be.a('function');
   });
 
   it('isClosed should return -1 if date has not been passed', () => {
-    isClosed().should.be.equal(-1);
+    isOpen().should.be.equal(-1);
   });
   it('isClosed should return true if current time is greater than 18:00', () => {
-    isClosed(expectingDate.setHours(19), currentDate).should.be.true;
+    isOpen(expectingDate.setHours(19), currentDate).should.be.true;
   });
 
   it('findDistance should be a function and return 1 difference from day 5', () => {

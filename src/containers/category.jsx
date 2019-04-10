@@ -14,9 +14,15 @@ const Current = props => {
     paddingHorizontal,
     marginHorizontal
   } = props;
+
+  if (!data || !data.id) {
+    return null;
+  }
+
+  const imageState = data && data.active ? 'active' : 'closed';
   return (
     <Category
-      active={data.active}
+      active={data && data.active}
       fullWidth={fullWidth}
       paddingVertical={paddingVertical}
       marginVertical={marginVertical}
@@ -25,7 +31,7 @@ const Current = props => {
       alignItems="center"
       justifyContent="center"
     >
-      { data && <Image src={media[data.name][data.active ? 'active' : 'closed']} alt={data.label} /> }
+      {data && <Image src={media[data.name][imageState]} alt={data.label} />}
       {children}
     </Category>
   );
@@ -41,7 +47,9 @@ Current.defaultProps = {
   marginVertical: null,
   marginHorizontal: null,
   data: {
-    active: false,
+    name: null,
+    label: null,
+    active: false
   }
 };
 
@@ -50,7 +58,7 @@ Current.propTypes = {
   data: PropTypes.shape({
     name: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    active: PropTypes.bool,
+    active: PropTypes.bool
   }),
   fullWidth: PropTypes.bool,
   paddingVertical: PropTypes.number,

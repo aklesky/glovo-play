@@ -17,9 +17,13 @@ export const theme = {
     margin: 10,
     marginVertical: 15,
     paddingVertical: 10,
+    paddingHorizontal: 10,
     store: {
-      minHeight: 200,
+      minHeight: 250,
       maxHeight: 300,
+    },
+    article: {
+      minHeight: 50,
     }
   }
 }

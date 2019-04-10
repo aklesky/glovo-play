@@ -1,7 +1,9 @@
-import { should } from 'chai';
+import chai, { should } from 'chai';
+import sorted from 'chai-sorted';
 import { orderBySchedule } from './schedule';
 import { stores } from '../../mock/stores';
 
+chai.use(sorted);
 should();
 
 describe('Schedule Suite', () => {
@@ -11,7 +13,7 @@ describe('Schedule Suite', () => {
 
   it('Schedule stores should be ordered, closed stores should be on the end of an array', () => {
     const sortedStores = orderBySchedule(stores);
-    sortedStores[0].should.have.property('is_closed').and.to.be.equals(false);
-    sortedStores[sortedStores.length - 1].should.have.property('is_closed').and.to.be.equals(true);
+
+    sortedStores.should.be.sortedBy('is_closed', { descending: false});
   });
 });

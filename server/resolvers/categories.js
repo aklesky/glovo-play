@@ -1,6 +1,6 @@
 import { logger } from '../utils/logger';
 import { getJsonData } from '../utils/data';
-import { isStoreClosed } from '../utils/schedule';
+import { isStoreOpen } from '../utils/schedule';
 
 export const Categories = {
   AppQuery: {
@@ -9,6 +9,7 @@ export const Categories = {
         const response = getJsonData('categories.json');
         const { categories } = response;
 
+        const currentDate = new Date();
         return categories.map(item => {
           const store = getJsonData(`${item.name}.json`);
           const { stores } = store;
@@ -17,7 +18,8 @@ export const Categories = {
             ...item,
 
             active: stores.reduce((_, current) => {
-              return !isStoreClosed(current, new Date());
+              const isClosed = isStoreOpen(current, currentDate);
+              return isClosed;
             }, true)
           };
         }).sort((a, b) => {

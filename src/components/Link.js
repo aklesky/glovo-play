@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { transform } from '@/theme/transform';
 
 export const LinkTo = styled(Link)`
   display: block;
@@ -11,5 +12,9 @@ export const LinkTo = styled(Link)`
   }
   pointer-events: ${props => (props.active ? 'auto' : 'none')};
   text-decoration: none;
-  padding: ${props => props.theme.metrics.padding};
+  padding: ${props => props.theme.metrics.padding}px;
+  &:hover {
+    ${transform};
+  }
+  cursor: pointer;
 `;

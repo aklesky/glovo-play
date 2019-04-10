@@ -27,7 +27,6 @@ class View extends Readable {
     const [head, footer] = data.split('<!-- AppRoot -->');
 
 
-    logger.info(this.context.url);
     const sheet = new ServerStyleSheet();
     const { staticApp } = require('@/entries/server');
 
@@ -41,7 +40,6 @@ class View extends Readable {
         logger.info('React Queries have been collected.');
         const extracted = apollo.extract();
         const metaTags = renderMetaTags();
-        logger.info(metaTags);
         this.push(head.replace('<!-- metaTags -->', metaTags));
         return done(
           null,
@@ -57,7 +55,6 @@ class View extends Readable {
     const stream = sheet.interleaveWithNodeStream(renderToNodeStream(jsx));
 
     stream.on('data', html => {
-      logger.info(html);
       this.push(html);
     });
 

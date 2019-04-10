@@ -22,13 +22,12 @@ export const parseTime = (time, currentDate) => {
   }
 };
 
-export const isClosed = (time, current) => {
+export const isOpen = (time, current) => {
   if (!time || !current) {
     return -1;
   }
 
-  const scheduled = time instanceof Date ? time : parseTime(time);
-
+  const scheduled = time instanceof Date ? time : parseTime(time, new Date(current.getTime()));
   return current > scheduled;
 };
 

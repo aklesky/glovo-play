@@ -7,5 +7,7 @@
   "willOpenToday": "Will open today at %s:%s",
   "nextOpenDay": "Next Opening hours on %s at %s:%s",
   "filterByTag": "Filter By Tag",
-  "category": "Category"
+  "isClosed": "Store is closed.",
+  "category": "Category",
+  "back": "Back"
 }

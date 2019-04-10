@@ -1,15 +1,14 @@
 import styled from 'styled-components';
+import { transform } from '@/theme/transform';
 
 export const Tag = styled.span`
   display: inline-block;
-  background: ${props => props.theme.colors.gray100};
+  background: ${props => props.theme.colors.background};
   color: ${props => props.theme.colors.white};
-  padding: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  padding: ${props => props.theme.metrics.margin}px;
+  margin: ${props => props.theme.metrics.padding}px;
   border-radius: 6px;
+  text-transform: capitalize;
   &:first-child {
     margin-left: 0;
   }
@@ -18,5 +17,9 @@ export const Tag = styled.span`
   }
   @media screen and (min-width: 1024px) {
     font-size: 14px;
+  }
+
+  &:hover {
+    ${transform};
   }
 `;

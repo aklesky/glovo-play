@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Input } from './Input';
 import { Label } from './Label';
-import { elevation } from '@/theme/elevation';
 
 const Search = props => {
   const { className, onKeyUp, value, placeholder } = props;
@@ -24,7 +23,7 @@ const Search = props => {
 };
 
 Search.defaultProps = {
-  value: null,
+  value: undefined,
   placeholder: null
 };
 
@@ -36,8 +35,6 @@ Search.propTypes = {
 };
 
 export default React.memo(styled(Search)`
-  padding: ${props => props.theme.metrics.padding};
   margin-top: ${props => props.theme.metrics.margin}px;
   margin-bottom: ${props => props.theme.metrics.margin}px;
-  ${elevation};
 `);
