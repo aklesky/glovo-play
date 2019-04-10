@@ -1,0 +1,21 @@
+query getCategory($category: String!, $tag: String) {
+  Category(category: $category, tag: $tag) {
+    current {
+      name
+      label
+      active
+    }
+    stores {
+      id
+      name
+      description
+      tags
+      is_closed
+      open
+      schedule {
+        open
+        close
+      }
+    }
+  }
+}

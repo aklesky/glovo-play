@@ -1,0 +1,13 @@
+{
+  "signal": "SIGHUP",
+  "watch": [
+    "server",
+    "config",
+    ".env"
+  ],
+  "verbose": true,
+  "ext": "js json",
+  "execMap": {
+    "js": "node -r @babel/register"
+  }
+}
